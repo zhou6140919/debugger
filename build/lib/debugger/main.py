@@ -11,9 +11,7 @@ class Debugger(IceCreamDebugger):
         super().__init__()
         self.run = typer.run
         self.d = q.d
-
-    def snoop(self, *args, **kwargs):
-        return pysnooper.snoop(*args, **kwargs)
+        self.snoop = pysnooper.snoop
 
 
 ic = Debugger()
