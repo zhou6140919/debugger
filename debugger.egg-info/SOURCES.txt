@@ -1,9 +1,0 @@
-README.md
-setup.py
-debugger/__init__.py
-debugger/main.py
-debugger.egg-info/PKG-INFO
-debugger.egg-info/SOURCES.txt
-debugger.egg-info/dependency_links.txt
-debugger.egg-info/not-zip-safe
-debugger.egg-info/top_level.txt
