@@ -1,14 +1,14 @@
 # My Custom Debugger
 
 ## Install
-```bash
-pip install zt_debugger
+```
+pip install ztdebugger
 ```
 
 ## Simple Usage
 
-```python
-from zt_debugger import ic
+```
+from ztdebugger import ic
 
 def foo(i):
     return i + 333
@@ -16,11 +16,11 @@ def foo(i):
     ic(foo(123))
 ```
 Prints
-```bash
+```
 ic| foo(123): 456
 ```
 
-```python
+```
 d = {'key': {1: 'one'}}
 ic(d['key'][1])
 
@@ -29,15 +29,15 @@ class klass():
     ic(klass.attr)
 ```
 Prints
-```bash
+```
 ic| d['key'][1]: 'one'
 ic| klass.attr: 'yep'
 ```
 
 ## Find where you are
 
-```python
-from zt_debugger import ic
+```
+from ztdebugger import ic
 
 
 def hello():
@@ -51,7 +51,7 @@ def hello():
 hello()
 ```
 Prints
-```bash
+```
 ic| tmp.py:5 in hello() at 20:59:30.457
 ic| tmp.py:7 in hello() at 20:59:30.458
 ```
@@ -65,7 +65,7 @@ ic.d()
 
 ## Decorator
 
-```python
+```
 @ic.snoop()
 def hello()
     s = "123"
@@ -74,7 +74,7 @@ def hello()
 print(hello())
 ```
 Prints
-```bash
+```
 Source path:... /Users/admin/Downloads/tmp.py
 20:56:24.294518 call         5 def hello():
 20:56:24.294597 line         6     s = "123"
@@ -84,4 +84,13 @@ New var:....... s = '123'
 Return value:.. '123'
 Elapsed time: 00:00:00.000135
 123
+```
+
+## Colorful Debugger
+
+```
+from ztdebugger import ic
+
+if __name__ == '__main__':
+    ic.run(main)
 ```
