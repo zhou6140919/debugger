@@ -1,5 +1,11 @@
 # My Custom Debugger
 
+## Features
+
+ - [ ] Setup email address once
+ - [x] Job fail email alert
+ - [x] Easy-to-use functions
+
 ## Install
 ```bash
 pip install ztdebugger
