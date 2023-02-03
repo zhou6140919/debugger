@@ -88,11 +88,19 @@ Elapsed time: 00:00:00.000135
 
 ## Colorful Debugger
 
-As same as [typer](https://typer.tiangolo.com/)
+As same as [rich.traceback.install()](https://rich.readthedocs.io/en/stable/traceback.html#automatic-traceback-handler)
 
 ```python
 from ztdebugger import ic
 
+# By default
+ic.init()
+# Add which email you want to send your exceptions to, only support qq sender now
+# Send to yourself by default
+ic.init(sender='xxx@qq.com', key='abcdefg')
+# Or you can assign receiver to any email address you like
+ic.init(sender='xxx@qq.com', receiver='xxx@126.com', key='abcdefg')
+
 if __name__ == '__main__':
-    ic.run(main)
+    main()
 ```
