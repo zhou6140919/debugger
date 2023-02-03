@@ -13,7 +13,7 @@ from ztdebugger import ic
 def foo(i):
     return i + 333
 
-    ic(foo(123))
+ic(foo(123))
 ```
 Prints
 ```bash
@@ -26,7 +26,7 @@ ic(d['key'][1])
 
 class klass():
     attr = 'yep'
-    ic(klass.attr)
+ic(klass.attr)
 ```
 Prints
 ```bash
