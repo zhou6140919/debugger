@@ -9,6 +9,7 @@ from email.mime.text import MIMEText
 from rich.console import Console
 from rich.traceback import Traceback
 import atexit
+import os
 
 
 class Debugger(IceCreamDebugger):
@@ -20,6 +21,7 @@ class Debugger(IceCreamDebugger):
 
     def init(self, sender=None, receiver=None, key=None):
         sys.excepthook = self.catch_exceptions
+        self.file_name = os.path.abspath(sys.argv[0])
         self.sender = sender
         if receiver is None:
             self.receiver = sender
@@ -39,7 +41,7 @@ class Debugger(IceCreamDebugger):
         elif 'qq' in self.sender:
             server = smtplib.SMTP_SSL('smtp.qq.com', 465)
         server.login(self.sender, self.key)
-        content = f"Your job has failed. Here is the traceback info:\n"
+        content = "Your job has failed. Here is the traceback info:\n"
         msg = MIMEMultipart()
         from datetime import datetime
         presesnt_time = str(datetime.now())
@@ -55,7 +57,7 @@ class Debugger(IceCreamDebugger):
             html = """
             <h1>Congratulations!!!</h1>
             <p>Python Job finished without error</p>
-            """ + embed_html(__file__)
+            """ + embed_html(self.file_name)
         html += embed_html(presesnt_time.split('.')[0])
         msg.attach(MIMEText(html, 'html'))
         msg['From'] = self.sender
@@ -69,9 +71,11 @@ class Debugger(IceCreamDebugger):
         )
         # rich_tb.trace.stacks[0].frames = rich_tb.trace.stacks[0].frames[1:]
         console_stderr.print(rich_tb)
-        # self.traceback_info_text = console_stderr.export_text()
         self.traceback_info_text = console_stderr.export_html()
-        self.error_type = t.__name__ + ': ' + str(val)
+        if str(val):
+            self.error_type = t.__name__ + ': ' + str(val)
+        else:
+            self.error_type = t.__name__
         self.exception = True
 
         return
