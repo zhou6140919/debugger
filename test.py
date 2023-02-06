@@ -1,10 +1,11 @@
 from ztdebugger import ic
 
-#ic.init(sender="1534643901@qq.com", receiver="1534643901@qq.com", key="aydcpdgycdofgffg")
-ic.init()
+ic.init(sender="1534643901@qq.com",
+        receiver="zhoutong@intern.langboat.com", key="aydcpdgycdofgffg")
+# ic.init()
 
 
-@ic.snoop()
+# @ic.snoop()
 def test():
     r = 0
     for i in range(1, 3):
