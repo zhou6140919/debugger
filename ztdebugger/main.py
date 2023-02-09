@@ -10,6 +10,7 @@ from rich.console import Console
 from rich.traceback import Traceback
 import atexit
 import os
+import time
 
 
 class Debugger(IceCreamDebugger):
@@ -47,8 +48,9 @@ class Debugger(IceCreamDebugger):
         presesnt_time = str(datetime.now())
         code_part1 = """<pre style="font-weight: normal; font-family: Menlo, Monaco, &quot;Courier New&quot;, monospace; font-size: 14px; white-space: pre-wrap; background-color: #F4F5F6; color: #3D4649; border-radius: 4px; overflow-wrap: break-word; word-wrap: break-word; margin: 0 0 15px; padding: 15px">"""
         code_part2 = """</pre>"""
-        embed_html = lambda x: code_part1 + x + code_part2
-        change_html = lambda x: x.replace("<code>", code_part1).replace("</code>", code_part2)
+        def embed_html(x): return code_part1 + x + code_part2
+        def change_html(x): return x.replace(
+            "<code>", code_part1).replace("</code>", code_part2)
         if self.exception:
             html = "<h1>"+content+"</h1>"+change_html(self.traceback_info_text)
             msg['Subject'] = "Python Job Failed -> " + self.error_type
@@ -79,6 +81,15 @@ class Debugger(IceCreamDebugger):
         self.exception = True
 
         return
+
+    @staticmethod
+    def countdown(time_elaspe):
+        while time_elaspe:
+            mins, secs = divmod(time_elaspe, 60)
+            timer = '{:02d}:{:02d}'.format(mins, secs)
+            print(timer, end="\r")
+            time.sleep(1)
+            time_elaspe -= 1
 
 
 ic = Debugger()

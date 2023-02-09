@@ -1,7 +1,8 @@
 from ztdebugger import ic
 
-ic.init(sender="1534643901@qq.com", receiver="zhoutong@intern.langboat.com", key="aydcpdgycdofgffg")
-#ic.init()
+# ic.init(sender="1534643901@qq.com",
+#        receiver="zhoutong@intern.langboat.com", key="aydcpdgycdofgffg")
+ic.init()
 
 
 # @ic.snoop()
@@ -17,9 +18,10 @@ def main():
     ic(b)
     ic(test())
     #a = 1 / 0
-    raise ValueError("hello world")
+    #raise ValueError("hello world")
     #assert 0
 
 
 if __name__ == '__main__':
     main()
+    ic.countdown(10)
