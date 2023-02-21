@@ -53,7 +53,7 @@ class Debugger(IceCreamDebugger):
             "<code>", code_part1).replace("</code>", code_part2)
         if self.exception:
             html = "<h1>"+content+"</h1>"+change_html(self.traceback_info_text)
-            msg['Subject'] = "Python Job Failed -> " + self.error_type
+            msg['Subject'] = "Python Job Failed"
         else:
             msg['Subject'] = "Python Job Finished Succesfully!"
             html = """
